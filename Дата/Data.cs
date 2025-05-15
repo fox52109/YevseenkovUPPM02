@@ -56,7 +56,7 @@ public class Date
             }
             --ndays;
         }
-        Console.WriteLine($"Добавленно {n} дней\nТекущая дата: {day}.{month}.{year}");
+        Console.WriteLine($"\nДобавленно {n} дней, текущая дата: {day}.{month}.{year}");
     }
 
     public void AddDays(Date date, int ndays)
@@ -82,7 +82,7 @@ public class Date
             }
             --ndays;
         }
-        Console.WriteLine($"Добавленно {n} дней\nТекущая дата: {day}.{month}.{year}");
+        Console.WriteLine($"\nДобавленно {n} дней, текущая дата: {day}.{month}.{year}");
     }
 
     public static (int years, int months, int days) Difference(Date date1, Date date2)
@@ -125,7 +125,7 @@ public class Date
 
         var (days, months, years) = Difference(start, end);
 
-        Console.WriteLine($"Разница между {start.day}.{start.month}.{start.year} и {end.day}.{end.month}.{end.year} составляет:" +
+        Console.WriteLine($"\nРазница между {start.day}.{start.month}.{start.year} и {end.day}.{end.month}.{end.year} составляет:" +
             $"\n{years} г.; {months} мес.; {days} дн.");
     }
 
@@ -145,17 +145,18 @@ public class Date
         if (year > y2)
             if (month > m2)
                 if (day > d2)
-                    Console.WriteLine($"Дата {day}.{month}.{year} больше чем {d2}.{m2}.{y2}");
+                    Console.WriteLine($"\nДата {day}.{month}.{year} больше чем {d2}.{m2}.{y2}");
                 else goto elsePrint;
             else goto elsePrint;
         else goto elsePrint;
 
         elsePrint:
-            Console.WriteLine($"Дата {d2}/{m2}/{y2} больше чем {day}/{month}/{year}");
+            Console.WriteLine($"\nДата {d2}.{m2}.{y2} больше чем {day}.{month}.{year}");
     }
     
 	public string ConvertToString()
     {
+        Console.WriteLine($"\nУспешная конвертация даты {day}.{month}.{year} в строку");
         return $"{day}.{month}.{year}";
     }
 
@@ -177,10 +178,14 @@ public class Date
                     int.TryParse(yearStr, out int y))
                 {
                     if (IsValidDate(y, m, d))
+                    {
+                        Console.WriteLine($"{d}.{m}.{y}");
                         return (d, m, y);
+                    }
                 }
             }
         }
+        
         return (0, 0, 0);
     }
     private static bool IsValidDate(int year, int month, int day)
@@ -199,23 +204,24 @@ public class Date
 
 public class Program
 {
-    public void Main()
+    public static void Main()
     {
-        Date vchera = new("02/02/2008");
-        Date old = new("18/09/1949");
-        Date birthday = new();
-
-        vchera.Subtraction(old);
-        vchera.AddDays(150);
-        Console.WriteLine("Успешная конвертация даты в строку:\n" + vchera.ToString());
-
+        //Создаем даты
+        Date myBirthday = new("13/06/2006");
+        Date googleCreationDate = new("04/09/1998");
+        Date anotherBirthday = new();
         
-        Console.WriteLine(vchera.ConvertToString());
-        Console.WriteLine(birthday.ConvertToString());
-        vchera.AddDays(birthday, 3);
-        Date date2 = new("04.13.2011");
-        vchera.Compare(date2);
+        //Ищем разницу между датой моего дня рождения и другогой даты
+        myBirthday.Subtraction(anotherBirthday);
+        //Преобразовываем дату моего др
+        myBirthday.ConvertToString();
 
-        Console.WriteLine(Date.GetFromString("Проверка метода получения 30.11.2001"));
+        //Добавляем 150 дней к дате создания Google
+        googleCreationDate.AddDays(150);
+        //Сравниваем какая дата больше, другой день рождения или дата создания Google
+        anotherBirthday.Compare(googleCreationDate);
+
+        //Получаем дату из строки текста
+        Date.GetFromString("Проверка метода получения 30.11.2001 даты из строки");
     }
 }
