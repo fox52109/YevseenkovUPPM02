@@ -1,0 +1,15 @@
+E:\УчПрактика\Проект\Дата\bin\Debug\net6.0\Дата.exe
+E:\УчПрактика\Проект\Дата\bin\Debug\net6.0\Дата.deps.json
+E:\УчПрактика\Проект\Дата\bin\Debug\net6.0\Дата.runtimeconfig.json
+E:\УчПрактика\Проект\Дата\bin\Debug\net6.0\Дата.dll
+E:\УчПрактика\Проект\Дата\bin\Debug\net6.0\Дата.pdb
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.csproj.AssemblyReference.cache
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.GeneratedMSBuildEditorConfig.editorconfig
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.AssemblyInfoInputs.cache
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.AssemblyInfo.cs
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.csproj.CoreCompileInputs.cache
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.dll
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\ref\Дата.dll
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.pdb
+E:\УчПрактика\Проект\Дата\obj\Debug\net6.0\Дата.genruntimeconfig.cache
+E:\УчПрактика\Проект\Дата\bin\Debug\net6.0\ref\Дата.dll
