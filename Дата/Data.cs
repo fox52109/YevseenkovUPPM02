@@ -22,7 +22,8 @@ public class Date
         year = Convert.ToInt32(splitDate[2]);
     }
 
-    private static readonly int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    private static readonly int[] monthDays = { 31, 28, 31, 30, 31, 30,
+        31, 31, 30, 31, 30, 31 };
 
     private static bool IsLeapYear(int year)
     {
@@ -56,7 +57,8 @@ public class Date
             }
             --ndays;
         }
-        Console.WriteLine($"\nДобавленно {n} дней, текущая дата: {day}.{month}.{year}");
+        Console.WriteLine($"\nДобавленно {n} дней," +
+            $"текущая дата: {day}.{month}.{year}");
     }
 
     public void AddDays(Date date, int ndays)
@@ -82,10 +84,12 @@ public class Date
             }
             --ndays;
         }
-        Console.WriteLine($"\nДобавленно {n} дней, текущая дата: {day}.{month}.{year}");
+        Console.WriteLine($"\nДобавленно {n} дней," +
+            $"текущая дата: {day}.{month}.{year}");
     }
 
-    public static (int years, int months, int days) Difference(Date date1, Date date2)
+    public static (int years, int months, int days)
+        Difference(Date date1, Date date2)
     {
         int d1 = date1.day, m1 = date1.month, y1 = date1.year;
         int d2 = date2.day, m2 = date2.month, y2 = date2.year;
@@ -106,7 +110,7 @@ public class Date
             months += 12;
         }
 
-        return (years, months, days);
+        return (days, months, years);
     }
 
     public void Subtraction(Date date2)
@@ -125,7 +129,9 @@ public class Date
 
         var (days, months, years) = Difference(start, end);
 
-        Console.WriteLine($"\nРазница между {start.day}.{start.month}.{start.year} и {end.day}.{end.month}.{end.year} составляет:" +
+        Console.WriteLine($"\nРазница между" +
+            $"{start.day}.{start.month}.{start.year} и" +
+            $"{end.day}.{end.month}.{end.year} составляет:" +
             $"\n{years} г.; {months} мес.; {days} дн.");
     }
 
@@ -138,25 +144,37 @@ public class Date
         return d1.day < d2.day;
     }
 
-    public void Compare(Date date2)
+    public bool Compare(Date date2)
     {
         int d2 = date2.day, m2 = date2.month, y2 = date2.year;
 
-        if (year > y2)
-            if (month > m2)
-                if (day > d2)
-                    Console.WriteLine($"\nДата {day}.{month}.{year} больше чем {d2}.{m2}.{y2}");
-                else goto elsePrint;
-            else goto elsePrint;
-        else goto elsePrint;
+        if (year > y2) goto firstDate;
+        else if (year == y2)
+            if (month > m2) goto firstDate;
+            else if (month == m2)
+                if (day > d2) goto firstDate;
+                else if (day == d2)
+                {
+                    Console.WriteLine($"\nДата {day}.{month}.{year} и {d2}.{m2}.{y2} равны");
+                    return false;
+                }
+                else goto secondDate;
+            else goto secondDate;
+        else goto secondDate;
 
-        elsePrint:
-            Console.WriteLine($"\nДата {d2}.{m2}.{y2} больше чем {day}.{month}.{year}");
+        firstDate:
+            Console.WriteLine($"\nДата {day}.{month}.{year} позже чем {d2}.{m2}.{y2}");
+            return false;
+
+        secondDate:
+            Console.WriteLine($"\nДата {d2}.{m2}.{y2} позже чем {day}.{month}.{year}");
+             return false;
     }
     
 	public string ConvertToString()
     {
-        Console.WriteLine($"\nУспешная конвертация даты {day}.{month}.{year} в строку");
+        Console.WriteLine($"\nУспешная конвертация даты" +
+            $"{day}.{month}.{year} в строку");
         return $"{day}.{month}.{year}";
     }
 
@@ -207,7 +225,7 @@ public class Program
     public static void Main()
     {
         //Создаем даты
-        Date myBirthday = new("13/06/2006");
+        Date myBirthday = new("13/06/2007");
         Date googleCreationDate = new("04/09/1998");
         Date anotherBirthday = new();
         
@@ -220,8 +238,11 @@ public class Program
         googleCreationDate.AddDays(150);
         //Сравниваем какая дата больше, другой день рождения или дата создания Google
         anotherBirthday.Compare(googleCreationDate);
+        anotherBirthday.Compare(myBirthday);
+        anotherBirthday.Compare(new("11/03/2006"));
 
         //Получаем дату из строки текста
-        Date.GetFromString("Проверка метода получения 30.11.2001 даты из строки");
+        Date.GetFromString("Проверка метода получения" +
+            "30.11.2001 даты из строки");
     }
 }
