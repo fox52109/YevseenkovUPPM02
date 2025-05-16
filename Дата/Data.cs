@@ -213,7 +213,7 @@ public class Program
         
         //Ищем разницу между датой моего дня рождения и другогой даты
         myBirthday.Subtraction(anotherBirthday);
-        //Преобразовываем дату моего др
+        //Преобразовываем дату моего дня рождения
         myBirthday.ConvertToString();
 
         //Добавляем 150 дней к дате создания Google
